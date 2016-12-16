@@ -8,12 +8,16 @@ class Word
      str=(0...num).map { ('a'..'z').to_a[rand(26)] }
      print str
 
-     a=Array.new
-     s=(0..num).flat_map{|num| str.to_a.combination(num).map(&:join)}
-     s.each do |p|
-      a.push(p)
+     arr=Array.new
+     s=(0..num).flat_map{|num| str.to_a.permutation(num).map(&:join)}
+     s.each do |c|
+      arr.push(c)
      end 
-    puts a
+     
+     puts arr 
+
+ 
+
 
    end
 end
