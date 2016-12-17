@@ -1,17 +1,13 @@
 
 
 require 'set'
-
 WORD_RE = /\w+/
-
 # Read in the default dictionary (from /usr/share/dict/words),
 # and put all the words into a set
 WORDS = Set.new(File.read('/usr/share/dict/words').scan(WORD_RE))
-
 puts "Enter the  length of random string to be generated"
 num=gets.chomp.to_i
 str=(0...num).map { ('a'..'z').to_a[rand(26)] }
-
 s=(0..num).flat_map{|num| str.to_a.permutation(num).map(&:join)}
 s.each do |line|
 # find all the words in the line that are contained in our dictionary
