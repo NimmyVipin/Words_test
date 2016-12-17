@@ -1,26 +1,20 @@
 
 
-class Word
+require 'set'
 
-   def show
-    puts "Enter the  length of random string to be generated"
-     num=gets.chomp.to_i
-     str=(0...num).map { ('a'..'z').to_a[rand(26)] }
-     print str
+WORD_RE = /\w+/
 
-     arr=Array.new
-     s=(0..num).flat_map{|num| str.to_a.permutation(num).map(&:join)}
-     s.each do |c|
-      arr.push(c)
-     end 
-     
-     puts arr 
+# Read in the default dictionary (from /usr/share/dict/words),
+# and put all the words into a set
+WORDS = Set.new(File.read('/usr/share/dict/words').scan(WORD_RE))
 
- 
+puts "Enter the  length of random string to be generated"
+num=gets.chomp.to_i
+str=(0...num).map { ('a'..'z').to_a[rand(26)] }
 
-
-   end
+s=(0..num).flat_map{|num| str.to_a.permutation(num).map(&:join)}
+s.each do |line|
+# find all the words in the line that are contained in our dictionary
+  recognized = line.scan(WORD_RE).find_all { |term|  WORDS.include? term }
+  puts recognized
 end
-
-obj=Word.new()
-obj.show
