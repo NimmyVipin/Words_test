@@ -5,10 +5,8 @@ require 'set'
 
 time = Benchmark.measure do
   WORD_RE = /\w+/
-
   # Read in the default dictionary (from /usr/share/dict/words),
   # and put all the words into a set
-
   WORDS = Set.new(File.read('/usr/share/dict/words').scan(WORD_RE))
   puts "Enter the  length of random string to be generated"
   num=gets.chomp.to_i
