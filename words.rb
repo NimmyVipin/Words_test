@@ -22,3 +22,4 @@ time = Benchmark.measure do
 end
 
 puts "Time elapsed #{time} (ms)"
+
